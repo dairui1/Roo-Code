@@ -137,12 +137,19 @@ export class OpenRouterHandler implements ApiHandler, SingleCompletionHandler {
 			}
 
 			const delta = chunk.choices[0]?.delta
-			if (delta?.content) {
+			// @ts-expect-error: reasoning_content is not in OpenAI types
+			if (delta?.reasoning_content) {
+				yield {
+					type: "text",
+					// @ts-expect-error: reasoning_content is not in OpenAI types
+					text: delta.reasoning_content,
+				}
+			} else if (delta?.content) {
 				fullResponseText += delta.content
 				yield {
 					type: "text",
 					text: delta.content,
-				} as ApiStreamChunk
+				}
 			}
 			// if (chunk.usage) {
 			// 	yield {

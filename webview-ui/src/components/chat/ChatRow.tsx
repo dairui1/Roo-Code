@@ -720,6 +720,30 @@ export const ChatRowContent = ({
 							</div>
 						</>
 					)
+				case "reasoning":
+					return (
+						<>
+							<div style={headerStyle}>
+								<span
+									className="codicon codicon-lightbulb"
+									style={{ color: "var(--vscode-charts-blue)" }}></span>
+								<span style={{ color: "var(--vscode-charts-blue)", fontWeight: "bold" }}>
+									Reasoning Process
+								</span>
+							</div>
+							<div
+								style={{
+									paddingTop: 10,
+									backgroundColor: "var(--vscode-textBlockQuote-background)",
+									borderLeft: "4px solid var(--vscode-charts-blue)",
+									paddingLeft: 12,
+									margin: "4px 0",
+									color: "var(--vscode-charts-blue)",
+								}}>
+								<Markdown markdown={message.text} />
+							</div>
+						</>
+					)
 				default:
 					return (
 						<>

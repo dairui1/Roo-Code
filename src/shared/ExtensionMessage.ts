@@ -155,6 +155,7 @@ export type ClineSay =
 	| "command"
 	| "mcp_server_request_started"
 	| "mcp_server_response"
+	| "reasoning"
 
 export interface ClineSayTool {
 	tool:

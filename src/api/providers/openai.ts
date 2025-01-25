@@ -58,6 +58,14 @@ export class OpenAiHandler implements ApiHandler, SingleCompletionHandler {
 
 			for await (const chunk of stream) {
 				const delta = chunk.choices[0]?.delta
+				// @ts-expect-error: reasoning_content is not in OpenAI types
+				if (delta?.reasoning_content) {
+					yield {
+						type: "text",
+						// @ts-expect-error: reasoning_content is not in OpenAI types
+						text: delta.reasoning_content,
+					}
+				}
 				if (delta?.content) {
 					yield {
 						type: "text",
